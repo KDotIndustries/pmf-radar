@@ -37,3 +37,15 @@ test("PMF Radar package exposes required v1 files", async () => {
     await exists(file);
   }
 });
+
+test("package and plugin placeholders contain syntactically valid JSON", async () => {
+  for (const file of [
+    "package.json",
+    ".codex-plugin/plugin.json",
+    ".claude-plugin/plugin.json",
+    ".cursor-plugin/plugin.json"
+  ]) {
+    const content = await read(file);
+    assert.doesNotThrow(() => JSON.parse(content), `${file} must parse as JSON`);
+  }
+});
