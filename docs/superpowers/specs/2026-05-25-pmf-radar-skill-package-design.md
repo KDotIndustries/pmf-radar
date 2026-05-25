@@ -54,6 +54,7 @@ commands/validate-idea.md
 examples/travel-assistant-input.md
 examples/freelancer-invoice-chaser-input.md
 examples/sample-output.md
+scripts/sync-harness-skills.mjs
 skills/pmf-radar/SKILL.md
 skills/pmf-radar/references/output-templates.md
 skills/pmf-radar/references/scoring-rubric.md
@@ -61,10 +62,22 @@ skills/pmf-radar/references/source-playbook.md
 skills/pmf-radar/references/search-patterns.md
 skills/pmf-radar/references/validation-tests.md
 skills/pmf-radar/references/red-flags.md
+.agents/skills/pmf-radar/
+.claude/skills/pmf-radar/
+.cursor/skills/pmf-radar/
+.gemini/skills/pmf-radar/
+.github/skills/pmf-radar/
+.kiro/skills/pmf-radar/
+.opencode/skills/pmf-radar/
+.pi/skills/pmf-radar/
+.qoder/skills/pmf-radar/
+.rovodev/skills/pmf-radar/
+.trae-cn/skills/pmf-radar/
+.trae/skills/pmf-radar/
 tests/skill-content.test.mjs
 ```
 
-This is approach 1 from the design discussion: a full PM0-style package. It includes PRD-required artifacts plus packaging and tests. A harness sync script is out of scope for the first pass unless the package later needs generated harness copies.
+This is approach 1 from the design discussion: a full PM0-style package. It includes PRD-required artifacts plus packaging, tests, plugin manifests, and harness skill copies modeled after PM0. The canonical source remains `skills/pmf-radar/`; harness directories are generated copies.
 
 ## Skill Architecture
 
@@ -168,15 +181,37 @@ The examples should use simple, approachable ideas rather than internal thesis e
 
 The command should route into PMF Radar and request a clear idea, Office Hours memo, comparison set, or post-MVP evidence depending on the user's input.
 
-## Plugin Metadata
+## Cross-Harness Packaging
 
-The PM0 package includes Codex, Claude, and Cursor plugin manifests. PMF Radar will mirror that packaging style where schemas are clear from PM0:
+The PM0 package uses two compatibility mechanisms:
+
+1. Plugin manifests for harnesses that consume package metadata.
+2. Copied skill directories for harnesses that discover repo-local skills under their own dot-directory.
+
+PMF Radar will mirror both. The plugin manifests are:
 
 - `.codex-plugin/plugin.json`
 - `.claude-plugin/plugin.json`
 - `.cursor-plugin/plugin.json`
 
 The manifests will point to the canonical packaged skill directory and describe PMF Radar as market-evidence research for founders. The capability language should emphasize interactive, read, and web-research-oriented workflows. No manifest should imply that PMF Radar installs integrations or performs validation.
+
+The harness skill copies will be:
+
+- `.agents/skills/pmf-radar`
+- `.claude/skills/pmf-radar`
+- `.cursor/skills/pmf-radar`
+- `.gemini/skills/pmf-radar`
+- `.github/skills/pmf-radar`
+- `.kiro/skills/pmf-radar`
+- `.opencode/skills/pmf-radar`
+- `.pi/skills/pmf-radar`
+- `.qoder/skills/pmf-radar`
+- `.rovodev/skills/pmf-radar`
+- `.trae-cn/skills/pmf-radar`
+- `.trae/skills/pmf-radar`
+
+`scripts/sync-harness-skills.mjs` will copy `skills/pmf-radar/` into each harness target. This keeps the package portable without maintaining divergent skill content by hand.
 
 ## Test Strategy
 
@@ -194,6 +229,7 @@ Tests will verify:
 - source handling rules are present
 - README includes the recommended workflow and validation boundary
 - examples exist for a travel assistant AI agent and a freelancer invoice chaser
+- harness skill copies match the canonical `skills/pmf-radar/` content after running the sync script
 
 The tests are content-contract tests, not runtime behavior tests, because v1 is instruction-only.
 
@@ -209,8 +245,9 @@ Reports should quote minimally, summarize primarily, include links where availab
 2. Create the canonical skill and references.
 3. Add optional command and examples.
 4. Add plugin manifests.
-5. Add content-contract tests.
-6. Run tests and fix package content until they pass.
+5. Add harness sync script and generated harness copies.
+6. Add content-contract tests.
+7. Run tests and fix package content until they pass.
 
 ## Acceptance Criteria
 
@@ -220,3 +257,4 @@ Reports should quote minimally, summarize primarily, include links where availab
 - `SKILL.md` stays compact and delegates detailed guidance to references.
 - The package avoids "validator" positioning and clearly separates evidence from validation.
 - The package mirrors PM0's open-source packaging style while staying instruction-only.
+- Harness-specific skill directories are generated from the canonical `skills/pmf-radar/` directory.
