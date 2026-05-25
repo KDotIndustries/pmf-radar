@@ -1,1 +1,38 @@
-{}
+{
+  "name": "pmf-radar",
+  "version": "0.1.0",
+  "description": "Market-evidence research for founders: complaints, workarounds, competitors, buyer signals, and validation tests.",
+  "author": {
+    "name": "PMF Radar"
+  },
+  "homepage": "https://github.com/omarkhatib/pmf-radar",
+  "repository": "https://github.com/omarkhatib/pmf-radar",
+  "license": "MIT",
+  "keywords": [
+    "market-evidence",
+    "skills",
+    "founders",
+    "startup",
+    "research"
+  ],
+  "skills": "./.agents/skills/",
+  "interface": {
+    "displayName": "PMF Radar",
+    "shortDescription": "Market-evidence research before founders build",
+    "longDescription": "Use PMF Radar to scan complaints, workarounds, competitors, buyer signals, source quality, and practical validation tests before deciding what to test next.",
+    "developerName": "PMF Radar",
+    "category": "Coding",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Run PMF Radar on a travel assistant AI agent",
+      "Compare verticals for this startup idea"
+    ],
+    "websiteURL": "https://github.com/omarkhatib/pmf-radar",
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}

@@ -49,3 +49,36 @@ test("package and plugin placeholders contain syntactically valid JSON", async (
     assert.doesNotThrow(() => JSON.parse(content), `${file} must parse as JSON`);
   }
 });
+
+test("README states positioning, workflow, modes, and validation boundary", async () => {
+  const readme = await read("README.md");
+
+  assert.match(readme, /PMF Radar/);
+  assert.match(readme, /market evidence/i);
+  assert.match(readme, /Office Hours = clarity\./);
+  assert.match(readme, /PMF Radar = evidence\./);
+  assert.match(readme, /Customers = validation\./);
+  assert.match(readme, /Pre-build market signal scan/);
+  assert.match(readme, /Comparative radar/);
+  assert.match(readme, /Post-MVP PMF diagnosis/);
+  assert.match(readme, /Exa/i);
+  assert.match(readme, /optional/i);
+  assert.match(readme, /does not validate/i);
+  assert.doesNotMatch(readme, /validate your idea instantly/i);
+  assert.doesNotMatch(readme, /know if your startup will work/i);
+});
+
+test("plugin manifests describe PMF Radar without validation overclaims", async () => {
+  for (const file of [
+    ".codex-plugin/plugin.json",
+    ".claude-plugin/plugin.json",
+    ".cursor-plugin/plugin.json"
+  ]) {
+    const manifest = JSON.parse(await read(file));
+    assert.equal(manifest.name, "pmf-radar");
+    assert.equal(manifest.version, "0.1.0");
+    assert.match(manifest.description, /market-evidence/i);
+    assert.match(manifest.skills, /skills/);
+    assert.doesNotMatch(JSON.stringify(manifest), /validator/i);
+  }
+});

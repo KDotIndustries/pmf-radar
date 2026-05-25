@@ -1,1 +1,19 @@
-{}
+{
+  "name": "pmf-radar",
+  "description": "Market-evidence research for founders: complaints, workarounds, competitors, buyer signals, and validation tests.",
+  "version": "0.1.0",
+  "author": {
+    "name": "PMF Radar"
+  },
+  "homepage": "https://github.com/omarkhatib/pmf-radar",
+  "repository": "https://github.com/omarkhatib/pmf-radar",
+  "license": "MIT",
+  "keywords": [
+    "market-evidence",
+    "skills",
+    "founders",
+    "startup",
+    "research"
+  ],
+  "skills": "./.cursor/skills/"
+}
