@@ -298,4 +298,6 @@ test("optional command and examples preserve evidence boundary", async () => {
   assert.match(sample, /PMF Radar:/);
   assert.match(sample, /Verdict/);
   assert.match(sample, /Research more|Run paid test|Park/);
+  assert.match(sample, /TBD|Do not rate/i);
+  assert.doesNotMatch(sample, /Add real source summary here after running PMF Radar\.\s*\|\s*Source link\s*\|\s*Medium/i);
 });

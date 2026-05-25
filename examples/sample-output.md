@@ -22,7 +22,7 @@ The likely user is a frequent traveler. The buyer is unclear unless this is sold
 
 | Evidence | Source | Signal strength | Interpretation |
 |---|---|---:|---|
-| Add real source summary here after running PMF Radar. | Source link | Medium | Treat as evidence, not validation. |
+| Add real source summary here after running PMF Radar. | Source link | TBD | Do not rate or interpret until a real source is added. |
 
 ## 15. Final recommendation
 
