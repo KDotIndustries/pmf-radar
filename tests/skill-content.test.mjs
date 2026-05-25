@@ -13,6 +13,23 @@ async function exists(relativePath) {
   await access(path.join(root, relativePath));
 }
 
+async function listFilesRecursive(relativeDir) {
+  const absoluteDir = path.join(root, relativeDir);
+  const entries = await readdir(absoluteDir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const child = path.join(relativeDir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...await listFilesRecursive(child));
+    } else {
+      files.push(child);
+    }
+  }
+
+  return files.sort();
+}
+
 const forbiddenOverclaims = [
   /idea validator/i,
   /market validator/i,
@@ -303,4 +320,39 @@ test("optional command and examples preserve evidence boundary", async () => {
     sample,
     /Add real source summary here after running PMF Radar\.\s*\|\s*Source link\s*\|\s*(Strong|Medium|Weak|High|Low|[1-5])/i
   );
+});
+
+test("harness skill copies match canonical PMF Radar skill", async () => {
+  const canonicalFiles = await listFilesRecursive("skills/pmf-radar");
+  const targets = [
+    ".agents/skills/pmf-radar",
+    ".claude/skills/pmf-radar",
+    ".cursor/skills/pmf-radar",
+    ".gemini/skills/pmf-radar",
+    ".github/skills/pmf-radar",
+    ".kiro/skills/pmf-radar",
+    ".opencode/skills/pmf-radar",
+    ".pi/skills/pmf-radar",
+    ".qoder/skills/pmf-radar",
+    ".rovodev/skills/pmf-radar",
+    ".trae-cn/skills/pmf-radar",
+    ".trae/skills/pmf-radar"
+  ];
+
+  for (const target of targets) {
+    const targetFiles = await listFilesRecursive(target);
+    assert.deepEqual(
+      targetFiles.map((file) => file.replace(`${target}/`, "")),
+      canonicalFiles.map((file) => file.replace("skills/pmf-radar/", ""))
+    );
+
+    for (const canonicalFile of canonicalFiles) {
+      const relative = canonicalFile.replace("skills/pmf-radar/", "");
+      assert.equal(
+        await read(path.join(target, relative)),
+        await read(canonicalFile),
+        `${target}/${relative} differs from canonical skill`
+      );
+    }
+  }
 });
