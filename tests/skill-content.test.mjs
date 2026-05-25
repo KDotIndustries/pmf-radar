@@ -101,3 +101,22 @@ test("plugin manifests describe PMF Radar without validation overclaims", async 
     assertNoForbiddenOverclaims(JSON.stringify(manifest), file);
   }
 });
+
+test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
+  const skill = await read("skills/pmf-radar/SKILL.md");
+
+  assert.match(skill, /^---\nname: pmf-radar\n/m);
+  assert.match(skill, /market evidence/i);
+  assert.match(skill, /complaints/i);
+  assert.match(skill, /workarounds/i);
+  assert.match(skill, /competitor/i);
+  assert.match(skill, /buyer signals/i);
+  assert.match(skill, /Pre-build market signal scan/);
+  assert.match(skill, /Comparative radar/);
+  assert.match(skill, /Post-MVP PMF diagnosis/);
+  assert.match(skill, /Use Exa if available/i);
+  assert.match(skill, /normal web search/i);
+  assert.match(skill, /user-provided links/i);
+  assert.match(skill, /too broad for evidence research/i);
+  assert.match(skill, /The report is not validation/i);
+});
