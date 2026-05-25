@@ -132,6 +132,7 @@ test("README states positioning, workflow, install, and validation boundary", as
   assert.match(readme, /Office Hours = clarity\./);
   assert.match(readme, /PMF Radar = evidence\./);
   assert.match(readme, /Customers = validation\./);
+  assert.match(readme, /https:\/\/github\.com\/garrytan\/gstack/);
   assert.match(readme, /Pre-build market signal scan/);
   assert.match(readme, /Comparative radar/);
   assert.match(readme, /Post-MVP PMF diagnosis/);
@@ -159,6 +160,7 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /user-provided links/i);
   assert.match(skill, /too broad for evidence research/i);
   assert.match(skill, /The report is not validation/i);
+  assert.match(skill, /https:\/\/github\.com\/garrytan\/gstack/);
   assertNoForbiddenOverclaims(skill, "SKILL.md");
 });
 

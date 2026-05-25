@@ -6,7 +6,7 @@ PMF Radar scans for market pull. It does not validate an idea, prove PMF, or rep
 
 ## Recommended Workflow
 
-1. Run GStack Office Hours or another founder pressure-test to clarify the idea, target user, status quo, and narrowest wedge.
+1. Run [GStack Office Hours](https://github.com/garrytan/gstack) or another founder pressure-test to clarify the idea, target user, status quo, and narrowest wedge.
 2. Run PMF Radar to scan public market evidence.
 3. Run a real validation test: customer interviews, paid pilots, LOIs, waitlists, usage tests, or actual payment.
 

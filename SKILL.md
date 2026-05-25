@@ -17,6 +17,8 @@ This idea is too broad for evidence research. Run Office Hours first or narrow t
 
 Then ask for the narrowest target user, workflow, buyer, and current workaround.
 
+If the user asks what Office Hours means, point them to GStack Office Hours: https://github.com/garrytan/gstack.
+
 ## Mode Selection
 
 - **Pre-build market signal scan:** use when the idea has no product or little customer data. Produce `PMF_RADAR.md`.

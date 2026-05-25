@@ -25,12 +25,12 @@ It does **not** claim to validate an idea. It searches for public evidence of:
 - wedge opportunities;
 - validation experiments.
 
-The skill should work after a founder has already clarified the idea, ideally through **GStack Office Hours**, but it should not require GStack.
+The skill should work after a founder has already clarified the idea, ideally through [GStack Office Hours](https://github.com/garrytan/gstack), but it should not require GStack.
 
 Recommended workflow:
 
 ```text
-1. GStack Office Hours
+1. [GStack Office Hours](https://github.com/garrytan/gstack)
    → pressure-test the idea, target user, status quo, and narrowest wedge.
 
 2. PMF Radar
@@ -234,7 +234,7 @@ PMF Radar v1 should be a strong, reusable agent workflow, not a productized app.
 
 PMF Radar should **not** clone GStack Office Hours.
 
-GStack Office Hours already handles founder pressure-testing and narrow-wedge thinking. PMF Radar should be positioned as the next step.
+[GStack Office Hours](https://github.com/garrytan/gstack) already handles founder pressure-testing and narrow-wedge thinking. PMF Radar should be positioned as the next step.
 
 Recommended README language:
 
@@ -245,7 +245,7 @@ PMF Radar works best after a founder pressure-test session.
 
 Recommended:
 
-1. Run GStack Office Hours to clarify the idea, target user, status quo, and narrowest wedge.
+1. Run [GStack Office Hours](https://github.com/garrytan/gstack) to clarify the idea, target user, status quo, and narrowest wedge.
 2. Run PMF Radar to scan public market evidence.
 3. Run a real validation test: customer interviews, paid pilots, LOIs, waitlists, usage tests, or actual payment.
 
@@ -1158,7 +1158,7 @@ Customers create validation.
 
 ## Recommended workflow
 
-If the idea is vague, recommend running GStack Office Hours first.
+If the idea is vague, recommend running [GStack Office Hours](https://github.com/garrytan/gstack) first.
 If the idea is specific enough, proceed with PMF Radar.
 If the user provides an Office Hours memo, use it as context.
 
@@ -1260,7 +1260,7 @@ It does not validate your idea by vibes. It scans for market pull: complaints, w
 
 PMF Radar works best after a founder pressure-test session.
 
-1. Run GStack Office Hours to clarify the idea, target user, status quo, and narrowest wedge.
+1. Run [GStack Office Hours](https://github.com/garrytan/gstack) to clarify the idea, target user, status quo, and narrowest wedge.
 2. Run PMF Radar to search public market evidence.
 3. Run a real-world validation test: customer interviews, paid pilots, LOIs, waitlists, or usage tests.
 
