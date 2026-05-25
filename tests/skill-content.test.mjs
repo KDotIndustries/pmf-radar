@@ -130,3 +130,56 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /The report is not validation/i);
   assertNoForbiddenOverclaims(skill, "skills/pmf-radar/SKILL.md");
 });
+
+test("references include required output templates and verdict labels", async () => {
+  const output = await read("skills/pmf-radar/references/output-templates.md");
+  const scoring = await read("skills/pmf-radar/references/scoring-rubric.md");
+
+  for (const artifact of ["PMF_RADAR.md", "PMF_COMPARISON.md", "PMF_DIAGNOSIS.md"]) {
+    assert.match(output, new RegExp(artifact.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  for (const label of ["Build now", "Run paid test", "Research more", "Park", "Kill", "Internal tool only"]) {
+    assert.match(scoring, new RegExp(label));
+  }
+
+  for (const dimension of [
+    "Pain intensity",
+    "Frequency",
+    "Buyer clarity",
+    "Existing spend",
+    "Workaround ugliness",
+    "Competitive gap",
+    "Distribution accessibility",
+    "MVP feasibility",
+    "AI advantage",
+    "Trust/compliance risk",
+    "Founder-market fit",
+    "Speed to paid test"
+  ]) {
+    assert.match(scoring, new RegExp(dimension.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});
+
+test("references include source, search, validation, and red-flag guidance", async () => {
+  const source = await read("skills/pmf-radar/references/source-playbook.md");
+  const search = await read("skills/pmf-radar/references/search-patterns.md");
+  const validation = await read("skills/pmf-radar/references/validation-tests.md");
+  const redFlags = await read("skills/pmf-radar/references/red-flags.md");
+
+  for (const term of ["Reddit", "G2", "Capterra", "GitHub issues", "pricing pages", "job posts", "communities"]) {
+    assert.match(source, new RegExp(term, "i"));
+  }
+
+  for (const pattern of ["takes too long", "spreadsheet template", "pricing", "alternative", "community", "won't pay"]) {
+    assert.match(search, new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
+  }
+
+  for (const term of ["paid pilot", "LOI", "waitlist", "detailed interview", "friends say it is cool"]) {
+    assert.match(validation, new RegExp(term, "i"));
+  }
+
+  for (const term of ["Kill", "Park", "Internal tool only", "regulated markets", "healthcare", "finance", "legal"]) {
+    assert.match(redFlags, new RegExp(term, "i"));
+  }
+});
