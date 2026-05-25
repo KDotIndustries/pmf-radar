@@ -356,3 +356,37 @@ test("harness skill copies match canonical PMF Radar skill", async () => {
     }
   }
 });
+
+test("package avoids PMF validation overclaims and unsafe source handling", async () => {
+  const files = [
+    "README.md",
+    "commands/validate-idea.md",
+    "examples/travel-assistant-input.md",
+    "examples/freelancer-invoice-chaser-input.md",
+    "examples/sample-output.md",
+    "skills/pmf-radar/SKILL.md",
+    ...(await listFilesRecursive("skills/pmf-radar/references"))
+  ];
+
+  for (const file of files) {
+    const text = await read(file);
+    assert.doesNotMatch(text, /Idea Validator/i, file);
+    assert.doesNotMatch(text, /Market Validator/i, file);
+    assert.doesNotMatch(text, /PMF Validator/i, file);
+    assert.doesNotMatch(text, /Validate your idea instantly/i, file);
+    assert.doesNotMatch(text, /Know if your startup will work/i, file);
+    assert.doesNotMatch(text, /Get a score and start building/i, file);
+  }
+
+  const safety = [
+    await read("README.md"),
+    await read("skills/pmf-radar/SKILL.md"),
+    await read("skills/pmf-radar/references/source-playbook.md")
+  ].join("\n");
+
+  assert.match(safety, /public/i);
+  assert.match(safety, /user-provided/i);
+  assert.match(safety, /paywalls/i);
+  assert.match(safety, /private communities/i);
+  assert.match(safety, /PII/i);
+});
