@@ -1,0 +1,19 @@
+{
+  "name": "pmf-radar",
+  "version": "0.1.0",
+  "type": "module",
+  "private": false,
+  "description": "Market-evidence research skill for founders and AI builders.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "sync:harnesses": "node scripts/sync-harness-skills.mjs"
+  },
+  "keywords": [
+    "skills",
+    "founders",
+    "market-research",
+    "product-market-fit",
+    "startup"
+  ]
+}
