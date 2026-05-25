@@ -360,6 +360,7 @@ test("harness skill copies match canonical PMF Radar skill", async () => {
 test("package avoids PMF validation overclaims and unsafe source handling", async () => {
   const files = [
     "README.md",
+    "package.json",
     "commands/validate-idea.md",
     "examples/travel-assistant-input.md",
     "examples/freelancer-invoice-chaser-input.md",
@@ -370,23 +371,25 @@ test("package avoids PMF validation overclaims and unsafe source handling", asyn
 
   for (const file of files) {
     const text = await read(file);
-    assert.doesNotMatch(text, /Idea Validator/i, file);
-    assert.doesNotMatch(text, /Market Validator/i, file);
-    assert.doesNotMatch(text, /PMF Validator/i, file);
-    assert.doesNotMatch(text, /Validate your idea instantly/i, file);
-    assert.doesNotMatch(text, /Know if your startup will work/i, file);
-    assert.doesNotMatch(text, /Get a score and start building/i, file);
+    assertNoForbiddenOverclaims(text, file);
   }
+
+  const sourcePlaybook = await read("skills/pmf-radar/references/source-playbook.md");
+  assertIncludesAll(sourcePlaybook, [
+    "## Source Safety",
+    "Do not bypass paywalls.",
+    "Do not scrape private communities.",
+    "Do not use leaked data.",
+    "Do not collect sensitive personal information.",
+    "Do not expose user PII in the output.",
+    "Respect site terms and access restrictions."
+  ], "skills/pmf-radar/references/source-playbook.md");
 
   const safety = [
     await read("README.md"),
-    await read("skills/pmf-radar/SKILL.md"),
-    await read("skills/pmf-radar/references/source-playbook.md")
+    await read("skills/pmf-radar/SKILL.md")
   ].join("\n");
 
   assert.match(safety, /public/i);
   assert.match(safety, /user-provided/i);
-  assert.match(safety, /paywalls/i);
-  assert.match(safety, /private communities/i);
-  assert.match(safety, /PII/i);
 });
