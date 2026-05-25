@@ -42,6 +42,16 @@ function assertSkillFrontmatter(content, label) {
   assert.match(frontmatter, /^description: \S.+$/m);
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function assertIncludesAll(content, values, label) {
+  for (const value of values) {
+    assert.match(content, new RegExp(escapeRegExp(value)), `${label} must include ${value}`);
+  }
+}
+
 test("PMF Radar package exposes required v1 files", async () => {
   for (const file of [
     "README.md",
@@ -135,9 +145,47 @@ test("references include required output templates and verdict labels", async ()
   const output = await read("skills/pmf-radar/references/output-templates.md");
   const scoring = await read("skills/pmf-radar/references/scoring-rubric.md");
 
-  for (const artifact of ["PMF_RADAR.md", "PMF_COMPARISON.md", "PMF_DIAGNOSIS.md"]) {
-    assert.match(output, new RegExp(artifact.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
-  }
+  assertIncludesAll(output, [
+    "PMF_RADAR.md",
+    "# PMF Radar: [Idea Name]",
+    "## 1. Verdict",
+    "## 2. Idea in one sentence",
+    "## 3. Target customer and buyer",
+    "## 4. Assumptions being tested",
+    "## 5. Pain evidence",
+    "## 6. Repeated complaint patterns",
+    "## 7. Current workaround",
+    "## 8. Existing spend",
+    "## 9. Competitor and alternative map",
+    "## 10. Best wedge",
+    "## 11. Business model hypothesis",
+    "## 12. 7-day validation test",
+    "## 13. Why this idea might be bad",
+    "## 14. Scoring",
+    "## 15. Final recommendation",
+    "## 16. Search log",
+    "PMF_COMPARISON.md",
+    "# PMF Comparison: [Theme]",
+    "## 1. Overall recommendation",
+    "## 2. Comparison table",
+    "## 3. Best first wedge",
+    "## 4. Ideas to park or kill",
+    "## 5. 7-day test plan for top option",
+    "## 6. Evidence gaps",
+    "PMF_DIAGNOSIS.md",
+    "# PMF Diagnosis: [Product Name]",
+    "## 1. PMF status",
+    "## 2. Segment with strongest pull",
+    "## 3. Activation evidence",
+    "## 4. Usage evidence",
+    "## 5. Revenue evidence",
+    "## 6. Qualitative evidence",
+    "## 7. PMF risks",
+    "## 8. Segment to double down on",
+    "## 9. Features to ignore",
+    "## 10. Next 30-day experiment",
+    "## 11. Final recommendation"
+  ], "skills/pmf-radar/references/output-templates.md");
 
   for (const label of ["Build now", "Run paid test", "Research more", "Park", "Kill", "Internal tool only"]) {
     assert.match(scoring, new RegExp(label));
@@ -157,7 +205,7 @@ test("references include required output templates and verdict labels", async ()
     "Founder-market fit",
     "Speed to paid test"
   ]) {
-    assert.match(scoring, new RegExp(dimension.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+    assert.match(scoring, new RegExp(escapeRegExp(dimension)));
   }
 });
 
@@ -171,15 +219,65 @@ test("references include source, search, validation, and red-flag guidance", asy
     assert.match(source, new RegExp(term, "i"));
   }
 
-  for (const pattern of ["takes too long", "spreadsheet template", "pricing", "alternative", "community", "won't pay"]) {
-    assert.match(search, new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"));
-  }
+  assertIncludesAll(search, [
+    "## Pain Complaints",
+    "[workflow] takes too long",
+    "[target user] hate [workflow]",
+    "site:reddit.com [target user] [workflow] frustrated",
+    "## Current Workarounds",
+    "[workflow] spreadsheet template",
+    "[workflow] virtual assistant",
+    "[workflow] outsourcing",
+    "## Existing Spend",
+    "[workflow] pricing",
+    "hire [role] for [workflow]",
+    "Upwork [workflow]",
+    "## Competitor Dissatisfaction",
+    "[competitor] alternative",
+    "[category] G2 reviews",
+    "[category] Capterra reviews",
+    "## Buyer And Distribution",
+    "[target buyer] community",
+    "[target buyer] association",
+    "[target buyer] LinkedIn group",
+    "## Evidence Against The Idea",
+    "why [category] startups fail",
+    "[target buyer] won't pay for software",
+    "[category] low willingness to pay"
+  ], "skills/pmf-radar/references/search-patterns.md");
 
-  for (const term of ["paid pilot", "LOI", "waitlist", "detailed interview", "friends say it is cool"]) {
-    assert.match(validation, new RegExp(term, "i"));
-  }
+  assertIncludesAll(validation, [
+    "## Strong Validation",
+    "customer pays",
+    "paid pilot",
+    "LOI",
+    "uses the product repeatedly",
+    "## Medium Validation",
+    "waitlist signup from target buyer",
+    "detailed interview",
+    "strong reply to cold outreach",
+    "buyer asks about pricing",
+    "## Weak Validation",
+    "friends say it is cool",
+    "AI gives it a high score",
+    "generic survey responses",
+    "users say \"I would use this\" but do not pay or act",
+    "## Recommendation Rules",
+    "kill metric",
+    "If only weak validation is available",
+    "regulated markets"
+  ], "skills/pmf-radar/references/validation-tests.md");
 
-  for (const term of ["Kill", "Park", "Internal tool only", "regulated markets", "healthcare", "finance", "legal"]) {
-    assert.match(redFlags, new RegExp(term, "i"));
-  }
+  assertIncludesAll(redFlags, [
+    "## Build Now Red Flags",
+    "## Run Paid Test Red Flags",
+    "## Research More Red Flags",
+    "## Park Red Flags",
+    "## Kill Red Flags",
+    "## Internal Tool Only Red Flags",
+    "## Regulated Markets",
+    "healthcare",
+    "finance",
+    "legal"
+  ], "skills/pmf-radar/references/red-flags.md");
 });
