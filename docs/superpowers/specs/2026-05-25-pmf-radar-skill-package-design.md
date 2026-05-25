@@ -194,7 +194,7 @@ PMF Radar will mirror both. The plugin manifests are:
 - `.claude-plugin/plugin.json`
 - `.cursor-plugin/plugin.json`
 
-The manifests will point to the canonical packaged skill directory and describe PMF Radar as market-evidence research for founders. The capability language should emphasize interactive, read, and web-research-oriented workflows. No manifest should imply that PMF Radar installs integrations or performs validation.
+The manifests will point to the harness-specific packaged skill roots they expose, while `skills/pmf-radar/` remains the canonical source copied into those roots. The capability language should describe PMF Radar as market-evidence research for founders and emphasize interactive, read, and web-research-oriented workflows. No manifest should imply that PMF Radar installs integrations or performs validation.
 
 The harness skill copies will be:
 

@@ -106,6 +106,35 @@ test("package and plugin placeholders contain syntactically valid JSON", async (
   }
 });
 
+test("package declares published files explicitly", async () => {
+  const manifest = JSON.parse(await read("package.json"));
+  for (const filePattern of [
+    ".agents/skills/",
+    ".claude-plugin/",
+    ".claude/skills/",
+    ".codex-plugin/",
+    ".cursor-plugin/",
+    ".cursor/skills/",
+    ".gemini/skills/",
+    ".github/skills/",
+    ".kiro/skills/",
+    ".opencode/skills/",
+    ".pi/skills/",
+    ".qoder/skills/",
+    ".rovodev/skills/",
+    ".trae-cn/skills/",
+    ".trae/skills/",
+    "commands/",
+    "docs/",
+    "examples/",
+    "scripts/",
+    "skills/",
+    "tests/"
+  ]) {
+    assert.ok(manifest.files.includes(filePattern), `package.json files must include ${filePattern}`);
+  }
+});
+
 test("README states positioning, workflow, modes, and validation boundary", async () => {
   const readme = await read("README.md");
 
@@ -124,16 +153,18 @@ test("README states positioning, workflow, modes, and validation boundary", asyn
 });
 
 test("plugin manifests describe PMF Radar without validation overclaims", async () => {
-  for (const file of [
-    ".codex-plugin/plugin.json",
-    ".claude-plugin/plugin.json",
-    ".cursor-plugin/plugin.json"
-  ]) {
+  const expectedSkillRoots = {
+    ".codex-plugin/plugin.json": "./.agents/skills/",
+    ".claude-plugin/plugin.json": "./.claude/skills/",
+    ".cursor-plugin/plugin.json": "./.cursor/skills/"
+  };
+
+  for (const [file, expectedSkillRoot] of Object.entries(expectedSkillRoots)) {
     const manifest = JSON.parse(await read(file));
     assert.equal(manifest.name, "pmf-radar");
     assert.equal(manifest.version, "0.1.0");
     assert.match(manifest.description, /market-evidence/i);
-    assert.match(manifest.skills, /skills/);
+    assert.equal(manifest.skills, expectedSkillRoot);
     assertNoForbiddenOverclaims(JSON.stringify(manifest), file);
   }
 });
