@@ -1,9 +1,11 @@
 # PMF Radar Skill Package Design
 
 Date: 2026-05-25
-Status: Approved approach: full PM0-style package
+Status: Superseded by Hallmark-style `npx skills add KDotIndustries/pmf-radar` package
 Source PRD: `docs/PRD_PMF_Radar_Open_Source_Skill.md`
 Reference package: `/Users/omarkhatib/GitHub/pm0`
+
+> Superseded note: this design captured the earlier PM0-style harness-copy approach. The current package uses a top-level `SKILL.md`, top-level `references/`, optional `commands/` and `examples/`, and `package.json` `skill` metadata instead of generated per-harness directories or plugin manifests.
 
 ## Summary
 

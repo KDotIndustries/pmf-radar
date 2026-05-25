@@ -1,5 +1,7 @@
 # PMF Radar Skill Package Implementation Plan
 
+> Superseded note: this plan captured the earlier PM0-style generated harness-copy implementation. The current implementation follows the Hallmark-style package shape: top-level `SKILL.md`, top-level `references/`, optional `commands/` and `examples/`, and `package.json` `skill` metadata installable with `npx skills add KDotIndustries/pmf-radar`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build PMF Radar as a PM0-style open-source, instruction-only market-evidence skill package.

@@ -40,9 +40,15 @@ Use Exa if available. Otherwise use the agent's normal web search, web fetch, br
 
 ## Install
 
-Install with a skills-aware package manager when available, or copy `skills/pmf-radar` into your agent's skills directory.
+Install PMF Radar with:
 
-This package also includes PM0-style harness copies for agents that discover skills from repo-local dot-directories.
+```bash
+npx skills add KDotIndustries/pmf-radar
+```
+
+Then ask your agent to run PMF Radar on a startup idea, an Office Hours memo, multiple verticals to compare, or post-MVP usage and revenue evidence.
+
+For stronger external research, connect [EXA MCP](https://exa.ai/docs/reference/exa-mcp) to your agent. Exa is optional; PMF Radar can also use the agent's normal web search, browser search, or user-provided links and snippets.
 
 ## Limitations
 

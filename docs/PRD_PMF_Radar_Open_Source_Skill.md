@@ -2,8 +2,9 @@
 
 **Version:** 0.1  
 **Product type:** Open-source agent skill / skill pack component  
-**Primary artifact:** `skills/pmf-radar/SKILL.md`  
-**Optional artifact:** `/validate-idea` command later  
+**Primary artifact:** `SKILL.md`  
+**Optional artifact:** `commands/validate-idea.md`  
+**Install path:** `npx skills add KDotIndustries/pmf-radar`  
 **Working thesis:** Office Hours creates clarity. PMF Radar finds market evidence. Customers create validation.
 
 ---
@@ -187,18 +188,20 @@ Required:
 
 - `README.md`
 - `LICENSE`
-- `skills/pmf-radar/SKILL.md`
-- `skills/pmf-radar/references/scoring-rubric.md`
-- `skills/pmf-radar/references/source-playbook.md`
-- `skills/pmf-radar/references/search-patterns.md`
-- `skills/pmf-radar/references/validation-tests.md`
-- `skills/pmf-radar/references/red-flags.md`
+- `package.json`
+- `SKILL.md`
+- `references/output-templates.md`
+- `references/scoring-rubric.md`
+- `references/source-playbook.md`
+- `references/search-patterns.md`
+- `references/validation-tests.md`
+- `references/red-flags.md`
 
 Optional in v1:
 
 - `commands/validate-idea.md`
-- `examples/operator-desk-input.md`
-- `examples/careloop-input.md`
+- `examples/travel-assistant-input.md`
+- `examples/freelancer-invoice-chaser-input.md`
 - `examples/sample-output.md`
 
 The skill should work in agents that support `SKILL.md`-style skills. It should be compatible with Codex-style skills and broadly useful for Claude Code or local coding agents that can read Markdown instructions.
@@ -1048,23 +1051,21 @@ Recommended repository:
 pmf-radar/
   README.md
   LICENSE
-  skills/
-    pmf-radar/
-      SKILL.md
-      references/
-        scoring-rubric.md
-        source-playbook.md
-        search-patterns.md
-        validation-tests.md
-        red-flags.md
-      agents/
-        openai.yaml              # optional
+  package.json
+  SKILL.md
+  references/
+    output-templates.md
+    scoring-rubric.md
+    source-playbook.md
+    search-patterns.md
+    validation-tests.md
+    red-flags.md
   commands/
-    validate-idea.md             # optional v2
+    validate-idea.md
   examples/
-    operator-desk-input.md
-    careloop-input.md
-    sample-pmf-radar-output.md
+    travel-assistant-input.md
+    freelancer-invoice-chaser-input.md
+    sample-output.md
 ```
 
 v1 should ship with:
@@ -1072,8 +1073,10 @@ v1 should ship with:
 ```text
 README.md
 LICENSE
-skills/pmf-radar/SKILL.md
-skills/pmf-radar/references/*.md
+package.json
+SKILL.md
+references/*.md
+commands/validate-idea.md
 examples/*.md
 ```
 
@@ -1268,20 +1271,18 @@ Customers = validation.
 
 ### 23.3 Installation
 
-Include generic install instructions:
+Include skills CLI install instructions:
 
 ```markdown
 ## Install
 
-Copy the `skills/pmf-radar` folder into your agent's skills directory.
+Install PMF Radar with:
 
-For Codex-style setups, use a repository-level skill path such as:
-
-```text
-.agents/skills/pmf-radar/SKILL.md
+```bash
+npx skills add KDotIndustries/pmf-radar
 ```
 
-or a user-level skills directory if your agent supports one.
+Then ask your agent to run PMF Radar on a startup idea, an Office Hours memo, multiple verticals to compare, or post-MVP usage and revenue evidence.
 ```
 
 ### 23.4 Optional Exa MCP
@@ -1479,7 +1480,7 @@ The local LLM should generate a repo that satisfies these criteria.
 
 ### 30.1 Skill files
 
-- `skills/pmf-radar/SKILL.md` exists.
+- top-level `SKILL.md` exists.
 - `SKILL.md` has valid front matter with `name` and `description`.
 - `SKILL.md` explains when to use and when not to use the skill.
 - `SKILL.md` includes all three modes.
@@ -1540,15 +1541,17 @@ Ask the local LLM to create these files:
 ```text
 README.md
 LICENSE
-skills/pmf-radar/SKILL.md
-skills/pmf-radar/references/scoring-rubric.md
-skills/pmf-radar/references/source-playbook.md
-skills/pmf-radar/references/search-patterns.md
-skills/pmf-radar/references/validation-tests.md
-skills/pmf-radar/references/red-flags.md
-examples/operator-desk-input.md
-examples/careloop-input.md
-examples/sample-pmf-radar-output.md
+package.json
+SKILL.md
+references/output-templates.md
+references/scoring-rubric.md
+references/source-playbook.md
+references/search-patterns.md
+references/validation-tests.md
+references/red-flags.md
+examples/travel-assistant-input.md
+examples/freelancer-invoice-chaser-input.md
+examples/sample-output.md
 ```
 
 Optional later:
