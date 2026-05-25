@@ -33,6 +33,15 @@ function assertNoForbiddenOverclaims(content, label) {
   }
 }
 
+function assertSkillFrontmatter(content, label) {
+  const match = content.match(/^---\n([\s\S]*?)\n---\n/);
+  assert.ok(match, `${label} must start with a complete YAML frontmatter block`);
+
+  const frontmatter = match[1];
+  assert.match(frontmatter, /^name: pmf-radar$/m);
+  assert.match(frontmatter, /^description: \S.+$/m);
+}
+
 test("PMF Radar package exposes required v1 files", async () => {
   for (const file of [
     "README.md",
@@ -105,7 +114,7 @@ test("plugin manifests describe PMF Radar without validation overclaims", async 
 test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   const skill = await read("skills/pmf-radar/SKILL.md");
 
-  assert.match(skill, /^---\nname: pmf-radar\n/m);
+  assertSkillFrontmatter(skill, "skills/pmf-radar/SKILL.md");
   assert.match(skill, /market evidence/i);
   assert.match(skill, /complaints/i);
   assert.match(skill, /workarounds/i);
@@ -119,4 +128,5 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /user-provided links/i);
   assert.match(skill, /too broad for evidence research/i);
   assert.match(skill, /The report is not validation/i);
+  assertNoForbiddenOverclaims(skill, "skills/pmf-radar/SKILL.md");
 });

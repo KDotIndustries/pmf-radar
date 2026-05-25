@@ -7,7 +7,7 @@ PMF Radar is a market evidence workflow. The report is not validation. It is evi
 
 ## Core Boundary
 
-Never claim that PMF Radar validates an idea, proves product-market fit, or predicts startup success. Customers create validation through interviews, paid pilots, LOIs, usage, referrals, repeat purchase, or actual payment.
+Never claim that PMF Radar validates an idea, establishes product-market fit, or forecasts whether a startup will succeed. Customers create validation through interviews, paid pilots, LOIs, usage, referrals, repeat purchase, or actual payment.
 
 If the input is too broad, say:
 
