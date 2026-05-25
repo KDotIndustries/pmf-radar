@@ -281,3 +281,21 @@ test("references include source, search, validation, and red-flag guidance", asy
     "legal"
   ], "skills/pmf-radar/references/red-flags.md");
 });
+
+test("optional command and examples preserve evidence boundary", async () => {
+  const command = await read("commands/validate-idea.md");
+  const travel = await read("examples/travel-assistant-input.md");
+  const invoice = await read("examples/freelancer-invoice-chaser-input.md");
+  const sample = await read("examples/sample-output.md");
+
+  assert.match(command, /evidence research/i);
+  assert.match(command, /does not validate/i);
+  assert.match(command, /PMF Radar/i);
+  assert.match(travel, /travel assistant/i);
+  assert.match(travel, /AI agent/i);
+  assert.match(invoice, /freelancer/i);
+  assert.match(invoice, /invoice/i);
+  assert.match(sample, /PMF Radar:/);
+  assert.match(sample, /Verdict/);
+  assert.match(sample, /Research more|Run paid test|Park/);
+});
