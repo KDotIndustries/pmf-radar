@@ -13,6 +13,26 @@ async function exists(relativePath) {
   await access(path.join(root, relativePath));
 }
 
+const forbiddenOverclaims = [
+  /idea validator/i,
+  /market validator/i,
+  /PMF validator/i,
+  /validate your idea instantly/i,
+  /know if your startup will work/i,
+  /get a score and start building/i,
+  /proves PMF/i,
+  /proves product-market fit/i,
+  /predicts startup success/i,
+  /validates market demand/i,
+  /replaces customer validation/i
+];
+
+function assertNoForbiddenOverclaims(content, label) {
+  for (const pattern of forbiddenOverclaims) {
+    assert.doesNotMatch(content, pattern, `${label} must not contain ${pattern}`);
+  }
+}
+
 test("PMF Radar package exposes required v1 files", async () => {
   for (const file of [
     "README.md",
@@ -64,8 +84,7 @@ test("README states positioning, workflow, modes, and validation boundary", asyn
   assert.match(readme, /Exa/i);
   assert.match(readme, /optional/i);
   assert.match(readme, /does not validate/i);
-  assert.doesNotMatch(readme, /validate your idea instantly/i);
-  assert.doesNotMatch(readme, /know if your startup will work/i);
+  assertNoForbiddenOverclaims(readme, "README.md");
 });
 
 test("plugin manifests describe PMF Radar without validation overclaims", async () => {
@@ -79,6 +98,6 @@ test("plugin manifests describe PMF Radar without validation overclaims", async 
     assert.equal(manifest.version, "0.1.0");
     assert.match(manifest.description, /market-evidence/i);
     assert.match(manifest.skills, /skills/);
-    assert.doesNotMatch(JSON.stringify(manifest), /validator/i);
+    assertNoForbiddenOverclaims(JSON.stringify(manifest), file);
   }
 });
