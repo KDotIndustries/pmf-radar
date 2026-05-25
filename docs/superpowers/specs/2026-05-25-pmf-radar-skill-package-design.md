@@ -51,7 +51,6 @@ package.json
 .claude-plugin/plugin.json
 .cursor-plugin/plugin.json
 commands/validate-idea.md
-examples/careloop-input.md
 examples/travel-assistant-input.md
 examples/freelancer-invoice-chaser-input.md
 examples/sample-output.md
@@ -161,7 +160,7 @@ The report will include PMF status, strongest-pull segment, activation evidence,
 
 The README must use "market evidence" language and avoid "validate instantly" language.
 
-The examples should make CareLoop the main serious example because that is the founder idea being discussed. The travel-assistant example should be intentionally simple and familiar so users can understand the workflow quickly. The freelancer-invoice-chaser example should give the package one lightweight B2B/workflow idea that is neither healthcare-adjacent nor travel-related.
+The examples should use simple, approachable ideas rather than internal thesis examples. The travel-assistant example should be intentionally familiar so users can understand the workflow quickly. The freelancer-invoice-chaser example should give the package one lightweight B2B/workflow idea that is neither healthcare-adjacent nor travel-related.
 
 ## Command Design
 
@@ -194,7 +193,7 @@ Tests will verify:
 - required scoring dimensions are present
 - source handling rules are present
 - README includes the recommended workflow and validation boundary
-- examples exist for CareLoop, a travel assistant AI agent, and a freelancer invoice chaser
+- examples exist for a travel assistant AI agent and a freelancer invoice chaser
 
 The tests are content-contract tests, not runtime behavior tests, because v1 is instruction-only.
 
