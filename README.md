@@ -43,7 +43,7 @@ Use Exa if available. Otherwise use the agent's normal web search, web fetch, br
 Install PMF Radar with:
 
 ```bash
-npx skills add https://github.com/KDotIndustries/pmf-radar/tree/main/skills/pmf-radar
+npx skills add KDotIndustries/pmf-radar
 ```
 
 The direct skill-directory URL matters: installing the repository root can copy repo docs and tests too.
