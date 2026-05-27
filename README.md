@@ -34,9 +34,9 @@ Use Exa if available. Otherwise use the agent's normal web search, web fetch, br
 
 ## Examples
 
-- `examples/travel-assistant-input.md`
-- `examples/freelancer-invoice-chaser-input.md`
-- `examples/sample-output.md`
+- `skills/pmf-radar/examples/travel-assistant-input.md`
+- `skills/pmf-radar/examples/freelancer-invoice-chaser-input.md`
+- `skills/pmf-radar/examples/sample-output.md`
 
 ## Install
 
@@ -45,6 +45,8 @@ Install PMF Radar with:
 ```bash
 npx skills add KDotIndustries/pmf-radar
 ```
+
+The installable payload lives under `skills/pmf-radar`, so the repository root install discovers the PMF Radar skill without copying repo docs or tests.
 
 Then ask your agent to run PMF Radar on a startup idea, an Office Hours memo, multiple verticals to compare, or post-MVP usage and revenue evidence.
 
