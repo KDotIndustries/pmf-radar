@@ -34,17 +34,19 @@ Use Exa if available. Otherwise use the agent's normal web search, web fetch, br
 
 ## Examples
 
-- `examples/travel-assistant-input.md`
-- `examples/freelancer-invoice-chaser-input.md`
-- `examples/sample-output.md`
+- `skills/pmf-radar/examples/travel-assistant-input.md`
+- `skills/pmf-radar/examples/freelancer-invoice-chaser-input.md`
+- `skills/pmf-radar/examples/sample-output.md`
 
 ## Install
 
 Install PMF Radar with:
 
 ```bash
-npx skills add KDotIndustries/pmf-radar
+npx skills add https://github.com/KDotIndustries/pmf-radar/tree/main/skills/pmf-radar
 ```
+
+The direct skill-directory URL matters: installing the repository root can copy repo docs and tests too.
 
 Then ask your agent to run PMF Radar on a startup idea, an Office Hours memo, multiple verticals to compare, or post-MVP usage and revenue evidence.
 

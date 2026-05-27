@@ -74,17 +74,17 @@ test("PMF Radar package exposes the Hallmark-style skill shape", async () => {
     "README.md",
     "LICENSE",
     "package.json",
-    "SKILL.md",
-    "commands/validate-idea.md",
-    "examples/travel-assistant-input.md",
-    "examples/freelancer-invoice-chaser-input.md",
-    "examples/sample-output.md",
-    "references/output-templates.md",
-    "references/scoring-rubric.md",
-    "references/source-playbook.md",
-    "references/search-patterns.md",
-    "references/validation-tests.md",
-    "references/red-flags.md"
+    "skills/pmf-radar/SKILL.md",
+    "skills/pmf-radar/commands/validate-idea.md",
+    "skills/pmf-radar/examples/travel-assistant-input.md",
+    "skills/pmf-radar/examples/freelancer-invoice-chaser-input.md",
+    "skills/pmf-radar/examples/sample-output.md",
+    "skills/pmf-radar/references/output-templates.md",
+    "skills/pmf-radar/references/scoring-rubric.md",
+    "skills/pmf-radar/references/source-playbook.md",
+    "skills/pmf-radar/references/search-patterns.md",
+    "skills/pmf-radar/references/validation-tests.md",
+    "skills/pmf-radar/references/red-flags.md"
   ]) {
     await exists(file);
   }
@@ -94,10 +94,10 @@ test("package declares skills CLI metadata without generated harness copies", as
   const manifest = JSON.parse(await read("package.json"));
 
   assert.equal(manifest.name, "pmf-radar");
-  assert.equal(manifest.skill.entry, "SKILL.md");
-  assert.equal(manifest.skill.references, "references");
+  assert.equal(manifest.skill.entry, "skills/pmf-radar/SKILL.md");
+  assert.equal(manifest.skill.references, "skills/pmf-radar/references");
   assert.deepEqual(manifest.skill.harnesses, ["claude-code", "cursor", "codex"]);
-  assert.deepEqual(manifest.files, ["SKILL.md", "references", "commands/", "examples/"]);
+  assert.deepEqual(manifest.files, ["skills/pmf-radar/"]);
   assert.equal(manifest.scripts["sync:harnesses"], undefined);
 
   const manifestText = JSON.stringify(manifest);
@@ -117,8 +117,7 @@ test("package declares skills CLI metadata without generated harness copies", as
     ".rovodev/skills/",
     ".trae-cn/skills/",
     ".trae/skills/",
-    "scripts/",
-    "skills/"
+    "scripts/"
   ]) {
     assert.doesNotMatch(manifestText, new RegExp(escapeRegExp(removedPath)));
   }
@@ -136,7 +135,8 @@ test("README states positioning, workflow, install, and validation boundary", as
   assert.match(readme, /Pre-build market signal scan/);
   assert.match(readme, /Comparative radar/);
   assert.match(readme, /Post-MVP PMF diagnosis/);
-  assert.match(readme, /npx skills add KDotIndustries\/pmf-radar/);
+  assert.match(readme, /npx skills add https:\/\/github\.com\/KDotIndustries\/pmf-radar\/tree\/main\/skills\/pmf-radar/);
+  assert.match(readme, /repository root can copy repo docs and tests too/i);
   assert.match(readme, /Exa/i);
   assert.match(readme, /optional/i);
   assert.match(readme, /does not validate/i);
@@ -144,9 +144,9 @@ test("README states positioning, workflow, install, and validation boundary", as
 });
 
 test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
-  const skill = await read("SKILL.md");
+  const skill = await read("skills/pmf-radar/SKILL.md");
 
-  assertSkillFrontmatter(skill, "SKILL.md");
+  assertSkillFrontmatter(skill, "skills/pmf-radar/SKILL.md");
   assert.match(skill, /market evidence/i);
   assert.match(skill, /complaints/i);
   assert.match(skill, /workarounds/i);
@@ -161,12 +161,12 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /too broad for evidence research/i);
   assert.match(skill, /The report is not validation/i);
   assert.match(skill, /https:\/\/github\.com\/garrytan\/gstack/);
-  assertNoForbiddenOverclaims(skill, "SKILL.md");
+  assertNoForbiddenOverclaims(skill, "skills/pmf-radar/SKILL.md");
 });
 
 test("references include required output templates and verdict labels", async () => {
-  const output = await read("references/output-templates.md");
-  const scoring = await read("references/scoring-rubric.md");
+  const output = await read("skills/pmf-radar/references/output-templates.md");
+  const scoring = await read("skills/pmf-radar/references/scoring-rubric.md");
 
   assertIncludesAll(output, [
     "PMF_RADAR.md",
@@ -208,7 +208,7 @@ test("references include required output templates and verdict labels", async ()
     "## 9. Features to ignore",
     "## 10. Next 30-day experiment",
     "## 11. Final recommendation"
-  ], "references/output-templates.md");
+  ], "skills/pmf-radar/references/output-templates.md");
 
   for (const label of ["Build now", "Run paid test", "Research more", "Park", "Kill", "Internal tool only"]) {
     assert.match(scoring, new RegExp(label));
@@ -233,10 +233,10 @@ test("references include required output templates and verdict labels", async ()
 });
 
 test("references include source, search, validation, and red-flag guidance", async () => {
-  const source = await read("references/source-playbook.md");
-  const search = await read("references/search-patterns.md");
-  const validation = await read("references/validation-tests.md");
-  const redFlags = await read("references/red-flags.md");
+  const source = await read("skills/pmf-radar/references/source-playbook.md");
+  const search = await read("skills/pmf-radar/references/search-patterns.md");
+  const validation = await read("skills/pmf-radar/references/validation-tests.md");
+  const redFlags = await read("skills/pmf-radar/references/red-flags.md");
 
   for (const term of ["Reddit", "G2", "Capterra", "GitHub issues", "pricing pages", "job posts", "communities"]) {
     assert.match(source, new RegExp(term, "i"));
@@ -267,7 +267,7 @@ test("references include source, search, validation, and red-flag guidance", asy
     "why [category] startups fail",
     "[target buyer] won't pay for software",
     "[category] low willingness to pay"
-  ], "references/search-patterns.md");
+  ], "skills/pmf-radar/references/search-patterns.md");
 
   assertIncludesAll(validation, [
     "## Strong Validation",
@@ -289,7 +289,7 @@ test("references include source, search, validation, and red-flag guidance", asy
     "kill metric",
     "If only weak validation is available",
     "regulated markets"
-  ], "references/validation-tests.md");
+  ], "skills/pmf-radar/references/validation-tests.md");
 
   assertIncludesAll(redFlags, [
     "## Build Now Red Flags",
@@ -302,14 +302,14 @@ test("references include source, search, validation, and red-flag guidance", asy
     "healthcare",
     "finance",
     "legal"
-  ], "references/red-flags.md");
+  ], "skills/pmf-radar/references/red-flags.md");
 });
 
 test("optional command and examples preserve evidence boundary", async () => {
-  const command = await read("commands/validate-idea.md");
-  const travel = await read("examples/travel-assistant-input.md");
-  const invoice = await read("examples/freelancer-invoice-chaser-input.md");
-  const sample = await read("examples/sample-output.md");
+  const command = await read("skills/pmf-radar/commands/validate-idea.md");
+  const travel = await read("skills/pmf-radar/examples/travel-assistant-input.md");
+  const invoice = await read("skills/pmf-radar/examples/freelancer-invoice-chaser-input.md");
+  const sample = await read("skills/pmf-radar/examples/sample-output.md");
 
   assert.match(command, /evidence research/i);
   assert.match(command, /does not validate/i);
@@ -332,12 +332,12 @@ test("package avoids PMF validation overclaims and unsafe source handling", asyn
   const files = [
     "README.md",
     "package.json",
-    "commands/validate-idea.md",
-    "examples/travel-assistant-input.md",
-    "examples/freelancer-invoice-chaser-input.md",
-    "examples/sample-output.md",
-    "SKILL.md",
-    ...(await listFilesRecursive("references"))
+    "skills/pmf-radar/commands/validate-idea.md",
+    "skills/pmf-radar/examples/travel-assistant-input.md",
+    "skills/pmf-radar/examples/freelancer-invoice-chaser-input.md",
+    "skills/pmf-radar/examples/sample-output.md",
+    "skills/pmf-radar/SKILL.md",
+    ...(await listFilesRecursive("skills/pmf-radar/references"))
   ];
 
   for (const file of files) {
@@ -345,7 +345,7 @@ test("package avoids PMF validation overclaims and unsafe source handling", asyn
     assertNoForbiddenOverclaims(text, file);
   }
 
-  const sourcePlaybook = await read("references/source-playbook.md");
+  const sourcePlaybook = await read("skills/pmf-radar/references/source-playbook.md");
   assertIncludesAll(sourcePlaybook, [
     "## Source Safety",
     "Do not bypass paywalls.",
@@ -354,11 +354,11 @@ test("package avoids PMF validation overclaims and unsafe source handling", asyn
     "Do not collect sensitive personal information.",
     "Do not expose user PII in the output.",
     "Respect site terms and access restrictions."
-  ], "references/source-playbook.md");
+  ], "skills/pmf-radar/references/source-playbook.md");
 
   const safety = [
     await read("README.md"),
-    await read("SKILL.md")
+    await read("skills/pmf-radar/SKILL.md")
   ].join("\n");
 
   assert.match(safety, /public/i);
