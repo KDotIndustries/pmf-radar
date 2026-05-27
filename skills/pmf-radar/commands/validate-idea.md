@@ -13,8 +13,10 @@ Accept one of:
 
 ## Routing
 
-- Raw idea: use PMF Radar Mode A and produce `PMF_RADAR.md`.
-- Multiple ideas or verticals: use Mode B and produce `PMF_COMPARISON.md`.
-- Existing product evidence: use Mode C and produce `PMF_DIAGNOSIS.md`.
+- Raw idea: use PMF Radar Mode A and produce `pmf-radar-YYYY-MM-DD-{idea-slug}.md`.
+- Multiple ideas or verticals: use Mode B and produce `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`.
+- Existing product evidence: use Mode C and produce `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`.
+
+Never overwrite an existing PMF Radar report. If a generated name already exists, append `-2`, `-3`, or a short timestamp before `.md`.
 
 If the idea is too broad, ask for the target user, workflow, buyer, and current workaround before researching.

@@ -158,6 +158,10 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /Use Exa if available/i);
   assert.match(skill, /normal web search/i);
   assert.match(skill, /user-provided links/i);
+  assert.match(skill, /pmf-radar-YYYY-MM-DD-\{idea-slug\}\.md/);
+  assert.match(skill, /pmf-comparison-YYYY-MM-DD-\{theme-slug\}\.md/);
+  assert.match(skill, /pmf-diagnosis-YYYY-MM-DD-\{product-slug\}\.md/);
+  assert.match(skill, /Never write to a fixed filename/i);
   assert.match(skill, /too broad for evidence research/i);
   assert.match(skill, /The report is not validation/i);
   assert.match(skill, /https:\/\/github\.com\/garrytan\/gstack/);
@@ -169,7 +173,11 @@ test("references include required output templates and verdict labels", async ()
   const scoring = await read("skills/pmf-radar/references/scoring-rubric.md");
 
   assertIncludesAll(output, [
-    "PMF_RADAR.md",
+    "pmf-radar-YYYY-MM-DD-{idea-slug}.md",
+    "pmf-comparison-YYYY-MM-DD-{theme-slug}.md",
+    "pmf-diagnosis-YYYY-MM-DD-{product-slug}.md",
+    "If the target file already exists",
+    "append `-2`, `-3`, or a short timestamp before `.md`",
     "# PMF Radar: [Idea Name]",
     "## 1. Verdict",
     "## 2. Idea in one sentence",
@@ -187,7 +195,6 @@ test("references include required output templates and verdict labels", async ()
     "## 14. Scoring",
     "## 15. Final recommendation",
     "## 16. Search log",
-    "PMF_COMPARISON.md",
     "# PMF Comparison: [Theme]",
     "## 1. Overall recommendation",
     "## 2. Comparison table",
@@ -195,7 +202,6 @@ test("references include required output templates and verdict labels", async ()
     "## 4. Ideas to park or kill",
     "## 5. 7-day test plan for top option",
     "## 6. Evidence gaps",
-    "PMF_DIAGNOSIS.md",
     "# PMF Diagnosis: [Product Name]",
     "## 1. PMF status",
     "## 2. Segment with strongest pull",
@@ -209,6 +215,14 @@ test("references include required output templates and verdict labels", async ()
     "## 10. Next 30-day experiment",
     "## 11. Final recommendation"
   ], "skills/pmf-radar/references/output-templates.md");
+
+  for (const forbiddenFixedName of ["PMF_RADAR.md", "PMF_COMPARISON.md", "PMF_DIAGNOSIS.md"]) {
+    assert.match(
+      output,
+      new RegExp(`Do not use[\\s\\S]*${escapeRegExp(forbiddenFixedName)}`),
+      `${forbiddenFixedName} should appear only as a forbidden fixed filename`
+    );
+  }
 
   for (const label of ["Build now", "Run paid test", "Research more", "Park", "Kill", "Internal tool only"]) {
     assert.match(scoring, new RegExp(label));

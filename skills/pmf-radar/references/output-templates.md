@@ -1,9 +1,31 @@
 # Output Templates
 
-Use the selected mode's artifact name and headings exactly. Do not add a fake
-certainty score or claim the report validates the idea.
+Use the selected mode's filename pattern and headings exactly. Do not add a fake
+certainty score or claim the report validates the idea. Never write to a fixed
+filename; repeated runs must not overwrite prior reports.
 
-## Mode A - `PMF_RADAR.md`
+## Filename Rules
+
+- Mode A: `pmf-radar-YYYY-MM-DD-{idea-slug}.md`
+- Mode B: `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`
+- Mode C: `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`
+
+Create the slug from the idea, comparison theme, or product name:
+- lowercase
+- ASCII letters and numbers
+- hyphen-separated words
+- no spaces or punctuation
+- max 8 descriptive words
+
+Use the current local date for `YYYY-MM-DD`. If the target file already exists,
+append `-2`, `-3`, or a short timestamp before `.md`.
+
+Do not use these fixed filenames because they cause overwritten reports:
+- `PMF_RADAR.md`
+- `PMF_COMPARISON.md`
+- `PMF_DIAGNOSIS.md`
+
+## Mode A - `pmf-radar-YYYY-MM-DD-{idea-slug}.md`
 
 ```markdown
 # PMF Radar: [Idea Name]
@@ -170,7 +192,7 @@ List:
 - gaps in evidence
 ```
 
-## Mode B - `PMF_COMPARISON.md`
+## Mode B - `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`
 
 Use when comparing multiple ideas or verticals.
 
@@ -195,7 +217,7 @@ Which idea or vertical should be tested first and why?
 ## 6. Evidence gaps
 ```
 
-## Mode C - `PMF_DIAGNOSIS.md`
+## Mode C - `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`
 
 Use after product launch.
 

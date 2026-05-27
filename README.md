@@ -18,15 +18,15 @@ Customers = validation.
 
 ### Pre-build market signal scan
 
-Use this when the idea has no product or little customer data. PMF Radar produces `PMF_RADAR.md`.
+Use this when the idea has no product or little customer data. PMF Radar produces a unique report such as `pmf-radar-2026-05-27-travel-assistant.md`.
 
 ### Comparative radar
 
-Use this when comparing multiple ideas or verticals. PMF Radar produces `PMF_COMPARISON.md`.
+Use this when comparing multiple ideas or verticals. PMF Radar produces a unique report such as `pmf-comparison-2026-05-27-ai-ops-ideas.md`.
 
 ### Post-MVP PMF diagnosis
 
-Use this when there is a product, users, revenue, usage, interviews, support tickets, or churn data. PMF Radar produces `PMF_DIAGNOSIS.md`.
+Use this when there is a product, users, revenue, usage, interviews, support tickets, or churn data. PMF Radar produces a unique report such as `pmf-diagnosis-2026-05-27-acme-analytics.md`.
 
 ## Search Providers
 

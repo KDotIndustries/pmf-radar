@@ -21,9 +21,11 @@ If the user asks what Office Hours means, point them to GStack Office Hours: htt
 
 ## Mode Selection
 
-- **Pre-build market signal scan:** use when the idea has no product or little customer data. Produce `PMF_RADAR.md`.
-- **Comparative radar:** use when comparing multiple ideas or verticals. Produce `PMF_COMPARISON.md`.
-- **Post-MVP PMF diagnosis:** use when the user has product, usage, revenue, analytics, interviews, support, churn, or sales-objection evidence. Produce `PMF_DIAGNOSIS.md`.
+- **Pre-build market signal scan:** use when the idea has no product or little customer data. Produce a uniquely named report: `pmf-radar-YYYY-MM-DD-{idea-slug}.md`.
+- **Comparative radar:** use when comparing multiple ideas or verticals. Produce a uniquely named report: `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`.
+- **Post-MVP PMF diagnosis:** use when the user has product, usage, revenue, analytics, interviews, support, churn, or sales-objection evidence. Produce a uniquely named report: `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`.
+
+Never write to a fixed filename like `PMF_RADAR.md`, `PMF_COMPARISON.md`, or `PMF_DIAGNOSIS.md`; repeated runs must not overwrite prior reports. If the target file already exists, append `-2`, `-3`, or a short timestamp before `.md`.
 
 ## Tool Use
 
@@ -35,7 +37,7 @@ Use only public sources or user-provided materials. Do not bypass paywalls, scra
 
 Read only the references needed for the selected mode:
 
-- `references/output-templates.md` for required report shape.
+- `references/output-templates.md` for required filename and report shape.
 - `references/source-playbook.md` before evidence gathering.
 - `references/search-patterns.md` before building queries.
 - `references/scoring-rubric.md` before scoring or choosing verdicts.
