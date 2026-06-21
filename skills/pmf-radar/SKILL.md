@@ -25,6 +25,8 @@ If the user asks what Office Hours means, point them to GStack Office Hours: htt
 - **Comparative radar:** use when comparing multiple ideas or verticals. Produce a uniquely named report: `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`.
 - **Post-MVP PMF diagnosis:** use when the user has product, usage, revenue, analytics, interviews, support, churn, or sales-objection evidence. Produce a uniquely named report: `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`.
 
+Also produce a same-basename HTML companion report, for example `pmf-radar-YYYY-MM-DD-{idea-slug}.html`. The HTML report must include the same substantive information as the Markdown report and follow `references/html-report-template.md`.
+
 Never write to a fixed filename like `PMF_RADAR.md`, `PMF_COMPARISON.md`, or `PMF_DIAGNOSIS.md`; repeated runs must not overwrite prior reports. If the target file already exists, append `-2`, `-3`, or a short timestamp before `.md`.
 
 ## Tool Use
@@ -38,6 +40,7 @@ Use only public sources or user-provided materials. Do not bypass paywalls, scra
 Read only the references needed for the selected mode:
 
 - `references/output-templates.md` for required filename and report shape.
+- `references/html-report-template.md` before creating the HTML companion report.
 - `references/source-playbook.md` before evidence gathering.
 - `references/search-patterns.md` before building queries.
 - `references/scoring-rubric.md` before scoring or choosing verdicts.

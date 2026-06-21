@@ -32,6 +32,10 @@ Use this when there is a product, users, revenue, usage, interviews, support tic
 
 Use Exa if available. Otherwise use the agent's normal web search, web fetch, browser search, or user-provided links and snippets. Exa is optional.
 
+## Outputs
+
+PMF Radar produces a Markdown report and a same-basename HTML companion report. The HTML report includes the same substantive information as the Markdown report, styled with Tailwind Play CDN and an Inter Google Font only.
+
 ## Examples
 
 - `skills/pmf-radar/examples/travel-assistant-input.md`

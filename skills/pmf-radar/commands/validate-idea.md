@@ -17,6 +17,8 @@ Accept one of:
 - Multiple ideas or verticals: use Mode B and produce `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`.
 - Existing product evidence: use Mode C and produce `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`.
 
+Also produce a same-basename `.html` companion report with all substantive information from the Markdown report.
+
 Never overwrite an existing PMF Radar report. If a generated name already exists, append `-2`, `-3`, or a short timestamp before `.md`.
 
 If the idea is too broad, ask for the target user, workflow, buyer, and current workaround before researching.

@@ -79,6 +79,7 @@ test("PMF Radar package exposes the Hallmark-style skill shape", async () => {
     "skills/pmf-radar/examples/travel-assistant-input.md",
     "skills/pmf-radar/examples/freelancer-invoice-chaser-input.md",
     "skills/pmf-radar/examples/sample-output.md",
+    "skills/pmf-radar/references/html-report-template.md",
     "skills/pmf-radar/references/output-templates.md",
     "skills/pmf-radar/references/scoring-rubric.md",
     "skills/pmf-radar/references/source-playbook.md",
@@ -135,6 +136,8 @@ test("README states positioning, workflow, install, and validation boundary", as
   assert.match(readme, /Pre-build market signal scan/);
   assert.match(readme, /Comparative radar/);
   assert.match(readme, /Post-MVP PMF diagnosis/);
+  assert.match(readme, /Markdown report and a same-basename HTML companion report/);
+  assert.match(readme, /Tailwind Play CDN and an Inter Google Font only/);
   assert.match(readme, /npx skills add KDotIndustries\/pmf-radar/);
   assert.match(readme, /without copying repo docs or tests/i);
   assert.match(readme, /Exa/i);
@@ -159,8 +162,12 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /normal web search/i);
   assert.match(skill, /user-provided links/i);
   assert.match(skill, /pmf-radar-YYYY-MM-DD-\{idea-slug\}\.md/);
+  assert.match(skill, /pmf-radar-YYYY-MM-DD-\{idea-slug\}\.html/);
   assert.match(skill, /pmf-comparison-YYYY-MM-DD-\{theme-slug\}\.md/);
   assert.match(skill, /pmf-diagnosis-YYYY-MM-DD-\{product-slug\}\.md/);
+  assert.match(skill, /HTML companion report/i);
+  assert.match(skill, /same substantive information/i);
+  assert.match(skill, /html-report-template\.md/);
   assert.match(skill, /Never write to a fixed filename/i);
   assert.match(skill, /Competitors can validate a category/i);
   assert.match(skill, /specific wedge/i);
@@ -173,12 +180,19 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
 
 test("references include required output templates and verdict labels", async () => {
   const output = await read("skills/pmf-radar/references/output-templates.md");
+  const html = await read("skills/pmf-radar/references/html-report-template.md");
   const scoring = await read("skills/pmf-radar/references/scoring-rubric.md");
 
   assertIncludesAll(output, [
     "pmf-radar-YYYY-MM-DD-{idea-slug}.md",
     "pmf-comparison-YYYY-MM-DD-{theme-slug}.md",
     "pmf-diagnosis-YYYY-MM-DD-{product-slug}.md",
+    "pmf-radar-YYYY-MM-DD-{idea-slug}.html",
+    "pmf-comparison-YYYY-MM-DD-{theme-slug}.html",
+    "pmf-diagnosis-YYYY-MM-DD-{product-slug}.html",
+    "same-basename HTML companion",
+    "all substantive sections and evidence",
+    "html-report-template.md",
     "If the target file already exists",
     "append `-2`, `-3`, or a short timestamp before `.md`",
     "# PMF Radar: [Idea Name]",
@@ -235,6 +249,25 @@ test("references include required output templates and verdict labels", async ()
   for (const label of ["Build now", "Run paid test", "Research more", "Park", "Kill", "Internal tool only"]) {
     assert.match(scoring, new RegExp(label));
   }
+
+  assertIncludesAll(html, [
+    "https://fonts.googleapis.com",
+    "https://fonts.gstatic.com",
+    "Inter:wght@400;500;600;700;800",
+    "https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4",
+    "--font-sans: \"Inter\", ui-sans-serif, system-ui, sans-serif",
+    "Do not use any other external CSS, JavaScript, images, icon libraries, analytics",
+    "The HTML report must include all substantive information from the Markdown",
+    "Category validated vs wedge validated",
+    "Pain Evidence",
+    "Competitors And Alternatives",
+    "Best Wedge And Business Model",
+    "Why This Might Be Bad",
+    "Final Recommendation",
+    "Search Log",
+    "For Mode A, include all 16 Markdown sections",
+    "If the HTML report omits a Markdown section, fix it before delivering"
+  ], "skills/pmf-radar/references/html-report-template.md");
 
   for (const dimension of [
     "Pain intensity",

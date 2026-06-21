@@ -10,6 +10,14 @@ filename; repeated runs must not overwrite prior reports.
 - Mode B: `pmf-comparison-YYYY-MM-DD-{theme-slug}.md`
 - Mode C: `pmf-diagnosis-YYYY-MM-DD-{product-slug}.md`
 
+For each Markdown report, also create a same-basename HTML companion:
+- Mode A: `pmf-radar-YYYY-MM-DD-{idea-slug}.html`
+- Mode B: `pmf-comparison-YYYY-MM-DD-{theme-slug}.html`
+- Mode C: `pmf-diagnosis-YYYY-MM-DD-{product-slug}.html`
+
+The HTML companion must contain all substantive sections and evidence from the
+Markdown report. Use `html-report-template.md` for design and technical rules.
+
 Create the slug from the idea, comparison theme, or product name:
 - lowercase
 - ASCII letters and numbers
