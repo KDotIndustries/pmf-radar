@@ -48,4 +48,8 @@ Read only the references needed for the selected mode:
 
 Rank evidence by strength. Repeated complaints, existing spend, bad reviews, hiring, direct buyer quotes, urgent workflow pain, and proof of frequency carry more weight than generic TAM, trend claims, social likes, or AI-generated reports.
 
+Treat competitor evidence carefully. Competitors can validate a category, but
+they do not validate the user's specific wedge. Before choosing Build now,
+separate category validation from wedge validation and explain why a small sellable build is the fastest way to test distribution or conversion.
+
 Quote sparingly. Summarize primarily. Include links where available. Mark weak, uncertain, stale, inferred, or contradictory evidence explicitly.

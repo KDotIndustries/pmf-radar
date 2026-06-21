@@ -121,6 +121,14 @@ If there is no evidence of spend, say that clearly.
 |---|---|---|---|
 
 Include direct competitors, indirect alternatives, and manual workarounds.
+After the table, separate category validation from wedge validation:
+- what competitors or alternatives prove buyers already pay for
+- what they do not prove about this specific wedge
+- what evidence would show the wedge is real
+
+Example trap: customer service software is category-validated, but a headless customer service backend is wedge-validated only if buyers want to own the UI,
+embed support natively, white-label support, or separate backend/control from
+the support interface.
 
 ## 10. Best wedge
 
@@ -182,6 +190,10 @@ Choose one action:
 - compare verticals
 - park
 - kill
+
+If recommending Build now, state the smallest sellable wedge, the distribution
+test it enables, and why building is faster than asking for abstract purchase
+intent. Do not recommend Build now only because a broad category has competitors.
 
 ## 16. Search log
 

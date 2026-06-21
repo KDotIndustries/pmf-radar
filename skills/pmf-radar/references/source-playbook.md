@@ -64,6 +64,18 @@ Competitor and alternative sources:
 - review comparison pages
 - agency or service provider pages
 
+Use competitors to separate category validation from wedge validation. Category
+validation evidence includes active pricing, customers, reviews, funding,
+integrations, agencies, job posts, RFPs, and repeated buying behavior. Wedge
+validation evidence is narrower: buyers complain about a specific incumbent
+gap, build custom workarounds, ask for API-first or embedded workflows, switch
+because of a narrow pain, or pay for a service that resembles the proposed
+wedge.
+
+Do not treat competitor existence as automatic permission to build. Competitors
+prove that a market may exist; they do not prove that buyers want the user's
+specific distribution angle, product shape, UX, price, or technical interface.
+
 Existing spend sources:
 - pricing pages
 - job posts
@@ -100,6 +112,9 @@ Strong evidence:
 - bad reviews of current tools
 - users asking for recommendations
 - direct quotes from target customers
+- competitors with clear pricing, customers, reviews, integrations, or public
+  usage in the same category
+- buyers building custom workarounds that resemble the proposed wedge
 - clear revenue loss, time loss, risk, or stress
 - clear buyer with budget
 - proof of workflow frequency or urgency
@@ -116,6 +131,7 @@ Medium evidence:
 
 Weak evidence:
 - generic TAM
+- a crowded category with no specific wedge evidence
 - influencer threads
 - AI-generated reports
 - one-off anecdotes

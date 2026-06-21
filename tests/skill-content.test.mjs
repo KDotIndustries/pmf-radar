@@ -162,6 +162,9 @@ test("SKILL.md routes PMF Radar modes and tool fallback", async () => {
   assert.match(skill, /pmf-comparison-YYYY-MM-DD-\{theme-slug\}\.md/);
   assert.match(skill, /pmf-diagnosis-YYYY-MM-DD-\{product-slug\}\.md/);
   assert.match(skill, /Never write to a fixed filename/i);
+  assert.match(skill, /Competitors can validate a category/i);
+  assert.match(skill, /specific wedge/i);
+  assert.match(skill, /small sellable build/i);
   assert.match(skill, /too broad for evidence research/i);
   assert.match(skill, /The report is not validation/i);
   assert.match(skill, /https:\/\/github\.com\/garrytan\/gstack/);
@@ -188,6 +191,11 @@ test("references include required output templates and verdict labels", async ()
     "## 7. Current workaround",
     "## 8. Existing spend",
     "## 9. Competitor and alternative map",
+    "category validation",
+    "wedge validation",
+    "headless customer service backend",
+    "smallest sellable wedge",
+    "Do not recommend Build now only because a broad category has competitors",
     "## 10. Best wedge",
     "## 11. Business model hypothesis",
     "## 12. 7-day validation test",
@@ -233,6 +241,8 @@ test("references include required output templates and verdict labels", async ()
     "Frequency",
     "Buyer clarity",
     "Existing spend",
+    "Category validation",
+    "Wedge validation",
     "Workaround ugliness",
     "Competitive gap",
     "Distribution accessibility",
@@ -244,6 +254,15 @@ test("references include required output templates and verdict labels", async ()
   ]) {
     assert.match(scoring, new RegExp(escapeRegExp(dimension)));
   }
+
+  assertIncludesAll(scoring, [
+    "## Category Validation vs Wedge Validation",
+    "Competitors can prove that a category has buyers",
+    "not proof that the user's specific wedge will win",
+    "Build now means build the smallest sellable wedge",
+    "Do not recommend Build now for a broad clone",
+    "Headless customer service"
+  ], "skills/pmf-radar/references/scoring-rubric.md");
 });
 
 test("references include source, search, validation, and red-flag guidance", async () => {
@@ -255,6 +274,14 @@ test("references include source, search, validation, and red-flag guidance", asy
   for (const term of ["Reddit", "G2", "Capterra", "GitHub issues", "pricing pages", "job posts", "communities"]) {
     assert.match(source, new RegExp(term, "i"));
   }
+
+  assertIncludesAll(source, [
+    "category validation",
+    "wedge validation",
+    "Do not treat competitor existence as automatic permission to build",
+    "buyers building custom workarounds that resemble the proposed wedge",
+    "a crowded category with no specific wedge evidence"
+  ], "skills/pmf-radar/references/source-playbook.md");
 
   assertIncludesAll(search, [
     "## Pain Complaints",
@@ -307,9 +334,13 @@ test("references include source, search, validation, and red-flag guidance", asy
 
   assertIncludesAll(redFlags, [
     "## Build Now Red Flags",
+    "competitors validate only the broad category",
+    "buyers want an outcome",
     "## Run Paid Test Red Flags",
     "## Research More Red Flags",
+    "the category is validated by competitors, but the wedge buyer is unclear",
     "## Park Red Flags",
+    "buyers already prefer complete solutions",
     "## Kill Red Flags",
     "## Internal Tool Only Red Flags",
     "## Regulated Markets",

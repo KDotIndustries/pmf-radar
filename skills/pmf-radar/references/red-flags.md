@@ -9,9 +9,14 @@ Do not recommend Build now when:
 - pain evidence is mostly weak, stale, or from non-buyers
 - no clear buyer or economic owner exists
 - there is no evidence of spend, urgent workflow pain, or repeated frequency
+- competitors validate only the broad category, not the proposed wedge
+- the idea is a broad clone with no specific distribution, positioning, UX,
+  price, vertical, API, compliance, or workflow advantage
 - the first wedge cannot be tested in 1-2 weeks
 - trust/compliance risk dominates the workflow
 - the founder cannot reach the buyer directly
+- buyers want an outcome, but the idea sells infrastructure or a backend they
+  would have to build around, with no evidence they want that control
 
 ## Run Paid Test Red Flags
 
@@ -29,6 +34,7 @@ Research more is appropriate when:
 - complaints exist but spend is unclear
 - buyer and user are different and the economic owner is unknown
 - competitors exist but their weakness is not specific
+- the category is validated by competitors, but the wedge buyer is unclear
 - validation evidence is only a waitlist, detailed interview, or strong reply
   without payment or workflow access
 
@@ -41,6 +47,8 @@ Park is appropriate when:
 - the problem is real but infrequent
 - buyers may not prioritize the workflow this quarter
 - validation would take too long for the founder's current constraints
+- buyers already prefer complete solutions and the proposed wedge asks them to
+  assemble too much themselves
 
 ## Kill Red Flags
 
